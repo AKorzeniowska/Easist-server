@@ -12,14 +12,4 @@ public class EasistServerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EasistServerApplication.class, args);
 	}
-//	@Configuration
-//	protected static class AuthenticationManagerConfiguration extends GlobalAuthenticationConfigurerAdapter {
-//
-//		@Override
-//		public void init(AuthenticationManagerBuilder auth) throws Exception {
-//			auth.inMemoryAuthentication().withUser("user").password("{noop}pass").roles("USER");
-//		}
-//
-//	}
-
 }
