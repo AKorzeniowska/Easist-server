@@ -1,4 +1,4 @@
-package com.edu.agh.easist.easistserver.security;
+package com.edu.agh.easist.easistserver.auth.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,9 +22,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
         http.anonymous()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/foos/**").permitAll()
-                .antMatchers("/demo/register").permitAll()
-                .antMatchers("/demo/all").access("hasRole('admin')")//.authenticated()
+                .antMatchers("/auth/register").permitAll()
+                .antMatchers("/auth/all").access("hasRole('admin')")
                 .anyRequest().authenticated()
                 .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }

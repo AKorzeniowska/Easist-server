@@ -1,4 +1,4 @@
-package com.edu.agh.easist.easistserver.models;
+package com.edu.agh.easist.easistserver.auth.models;
 
 import lombok.Getter;
 import lombok.ToString;

@@ -1,6 +1,6 @@
-package com.edu.agh.easist.easistserver.security;
+package com.edu.agh.easist.easistserver.auth.security;
 
-import com.edu.agh.easist.easistserver.services.UserDetailsServiceImpl;
+import com.edu.agh.easist.easistserver.auth.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;

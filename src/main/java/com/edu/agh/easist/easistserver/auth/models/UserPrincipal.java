@@ -1,4 +1,4 @@
-package com.edu.agh.easist.easistserver.models;
+package com.edu.agh.easist.easistserver.auth.models;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

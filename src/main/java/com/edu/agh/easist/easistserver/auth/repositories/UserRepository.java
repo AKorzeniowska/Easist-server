@@ -1,6 +1,6 @@
-package com.edu.agh.easist.easistserver.repositories;
+package com.edu.agh.easist.easistserver.auth.repositories;
 
-import com.edu.agh.easist.easistserver.models.User;
+import com.edu.agh.easist.easistserver.auth.models.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

@@ -1,11 +1,9 @@
-package com.edu.agh.easist.easistserver.models;
+package com.edu.agh.easist.easistserver.auth.models;
 
 import lombok.Getter;
 import lombok.ToString;
-import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,10 +16,6 @@ public class User {
     private Long id;
     @Column(nullable = false)
     private String username;
-    private String firstName;
-    private String lastName;
-    @Column(nullable = false)
-    private String email;
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
@@ -36,10 +30,9 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-    public User(String username, String email, String password) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.email = email;
         this.accountNonExpired = true;
         this.accountNonLocked = true;
         this.credentialsNonExpired = true;
