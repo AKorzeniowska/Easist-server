@@ -1,4 +1,4 @@
-package com.edu.agh.easist.easistserver.data.models;
+package com.edu.agh.easist.easistserver.resource.models;
 
 import lombok.Data;
 

@@ -1,8 +1,7 @@
-package com.edu.agh.easist.easistserver.data.repositories;
+package com.edu.agh.easist.easistserver.resource.repositories;
 
 import com.edu.agh.easist.easistserver.auth.models.User;
-import com.edu.agh.easist.easistserver.data.models.Doctor;
-import com.edu.agh.easist.easistserver.data.models.Patient;
+import com.edu.agh.easist.easistserver.resource.models.Doctor;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

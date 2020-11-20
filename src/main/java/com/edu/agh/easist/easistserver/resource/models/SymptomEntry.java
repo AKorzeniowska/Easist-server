@@ -1,12 +1,15 @@
-package com.edu.agh.easist.easistserver.data.models;
+package com.edu.agh.easist.easistserver.resource.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class SymptomEntry {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

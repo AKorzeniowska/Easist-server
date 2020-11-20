@@ -1,10 +1,10 @@
-package com.edu.agh.easist.easistserver.data.controllers;
+package com.edu.agh.easist.easistserver.resource.controllers;
 
 import com.edu.agh.easist.easistserver.auth.models.User;
 import com.edu.agh.easist.easistserver.auth.repositories.UserRepository;
-import com.edu.agh.easist.easistserver.data.models.DiaryEntry;
-import com.edu.agh.easist.easistserver.data.models.Patient;
-import com.edu.agh.easist.easistserver.data.repositories.PatientRepository;
+import com.edu.agh.easist.easistserver.resource.models.DiaryEntry;
+import com.edu.agh.easist.easistserver.resource.models.Patient;
+import com.edu.agh.easist.easistserver.resource.repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;

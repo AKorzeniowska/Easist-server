@@ -1,13 +1,13 @@
-package com.edu.agh.easist.easistserver.data.models;
+package com.edu.agh.easist.easistserver.resource.models;
 
 import com.edu.agh.easist.easistserver.auth.models.User;
 import com.edu.agh.easist.easistserver.auth.models.UserData;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -28,6 +28,8 @@ public class Patient {
     private String phoneNumber;
     @Column(nullable = false)
     private Integer age;
+    @Column(nullable = false)
+    private String username;
 
     @OneToOne
     private User user;
@@ -37,14 +39,8 @@ public class Patient {
     private Set<Appointment> appointments;
     @OneToMany
     private Set<DiaryEntry> diaryEntries;
-
-    public Patient(String firstName, String lastName, String email, String phoneNumber, Integer age) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.age = age;
-    }
+    @OneToMany
+    private Set<Symptom> symptoms;
 
     public Patient(UserData userData){
         this.firstName = userData.getFirstName();
@@ -52,5 +48,12 @@ public class Patient {
         this.age = userData.getAge();
         this.phoneNumber = userData.getPhoneNumber();
         this.email = userData.getEmailAddress();
+        this.username = userData.getUsername();
+    }
+
+    public void addSymptom(Symptom symptom){
+        if (this.symptoms == null)
+            this.symptoms = new HashSet<>();
+        this.symptoms.add(symptom);
     }
 }

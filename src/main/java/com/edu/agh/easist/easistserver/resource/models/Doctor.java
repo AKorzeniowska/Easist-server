@@ -1,9 +1,8 @@
-package com.edu.agh.easist.easistserver.data.models;
+package com.edu.agh.easist.easistserver.resource.models;
 
 import com.edu.agh.easist.easistserver.auth.models.User;
 import com.edu.agh.easist.easistserver.auth.models.UserData;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -30,6 +29,8 @@ public class Doctor {
     private String address1;
     @Column(nullable = false)
     private String address2;
+    @Column(nullable = false)
+    private String username;
 
     @OneToOne
     private User user;
@@ -38,15 +39,6 @@ public class Doctor {
     @OneToMany
     private Set<Appointment> appointments;
 
-    public Doctor(String firstName, String lastName, String email, String phoneNumber, String address1, String address2) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.address1 = address1;
-        this.address2 = address2;
-    }
-
     public Doctor(UserData userData){
         this.firstName = userData.getFirstName();
         this.lastName = userData.getLastName();
@@ -54,5 +46,6 @@ public class Doctor {
         this.address1 = userData.getAddress1();
         this.address2 = userData.getAddress2();
         this.phoneNumber = userData.getPhoneNumber();
+        this.username = userData.getUsername();
     }
 }
