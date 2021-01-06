@@ -2,16 +2,16 @@ package com.edu.agh.easist.easistserver.resource.models;
 
 import com.edu.agh.easist.easistserver.auth.models.User;
 import com.edu.agh.easist.easistserver.auth.models.UserData;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@ToString
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Doctor {
     @Id
@@ -32,12 +32,9 @@ public class Doctor {
     @Column(nullable = false)
     private String username;
 
-    @OneToOne
-    private User user;
+    @JsonIgnore
     @OneToMany
     private Set<Patient> patients;
-    @OneToMany
-    private Set<Appointment> appointments;
 
     public Doctor(UserData userData){
         this.firstName = userData.getFirstName();
@@ -47,5 +44,11 @@ public class Doctor {
         this.address2 = userData.getAddress2();
         this.phoneNumber = userData.getPhoneNumber();
         this.username = userData.getUsername();
+    }
+
+    public void addPatient(Patient patient){
+        if (this.patients == null)
+            this.patients = new HashSet<>();
+        this.patients.add(patient);
     }
 }

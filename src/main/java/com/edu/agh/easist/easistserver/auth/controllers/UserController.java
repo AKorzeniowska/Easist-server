@@ -12,8 +12,10 @@ import com.edu.agh.easist.easistserver.resource.repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +33,19 @@ public class UserController {
     private PatientRepository patientRepository;
     @Autowired
     private DoctorRepository doctorRepository;
+
+    @GetMapping(path="/role")
+    public @ResponseBody String getRole(Authentication authentication){
+        String username = authentication.getName();
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isEmpty()){
+            return null;
+        } else if (user.get().getRoles().stream().map(Role::getRoleName).anyMatch("doctor"::equals)) {
+            return "doctor";
+        } else {
+            return "patient";
+        }
+    }
 
     @GetMapping(path="/all")
     public @ResponseBody Iterable<User> getAllUsers() {
@@ -62,14 +77,12 @@ public class UserController {
 
     ///TODO: factory?
     private void saveUser(UserData userData, Role role, User user){
-        //TODO: get tf out the configuration
+        //TODO: get out the configuration
         if (role != null && role.getRoleName().toLowerCase().equals("patient")) {
             Patient patient = new Patient(userData);
-            patient.setUser(user);
             patientRepository.save(patient);
         } else if (role != null && role.getRoleName().toLowerCase().equals("doctor")) {
             Doctor doctor = new Doctor(userData);
-            doctor.setUser(user);
             doctorRepository.save(doctor);
         }
     }

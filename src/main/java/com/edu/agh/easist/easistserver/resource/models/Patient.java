@@ -2,17 +2,16 @@ package com.edu.agh.easist.easistserver.resource.models;
 
 import com.edu.agh.easist.easistserver.auth.models.User;
 import com.edu.agh.easist.easistserver.auth.models.UserData;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@ToString
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Patient {
     @Id
@@ -30,17 +29,17 @@ public class Patient {
     private Integer age;
     @Column(nullable = false)
     private String username;
+    @Column
+    private String comment;
 
-    @OneToOne
-    private User user;
     @ManyToOne
     private Doctor doctor;
-    @OneToMany
-    private Set<Appointment> appointments;
     @OneToMany
     private Set<DiaryEntry> diaryEntries;
     @OneToMany
     private Set<Symptom> symptoms;
+    @OneToMany
+    private Set<Medicine> medicines;
 
     public Patient(UserData userData){
         this.firstName = userData.getFirstName();
@@ -55,5 +54,17 @@ public class Patient {
         if (this.symptoms == null)
             this.symptoms = new HashSet<>();
         this.symptoms.add(symptom);
+    }
+
+    public void addMedicine(Medicine medicine){
+        if (this.medicines == null)
+            this.medicines = new HashSet<>();
+        this.medicines.add(medicine);
+    }
+
+    public void addDiaryEntry(DiaryEntry diaryEntry){
+        if (this.diaryEntries == null)
+            this.diaryEntries = new HashSet<>();
+        this.diaryEntries.add(diaryEntry);
     }
 }
